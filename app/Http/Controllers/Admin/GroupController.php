@@ -34,6 +34,13 @@ class GroupController extends Controller
             'status' => $request->has('status') ? 1 : 0,
         ];
 
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/groups/', $filename);
+            $data['image'] = "uploads/groups/$filename";
+        }
+
         Group::create($data);
 
         return redirect('admin/groups')->with('message', 'Group Added Successfully');
@@ -55,6 +62,13 @@ class GroupController extends Controller
             'group_title' => $request->input('group_title'),
             'status' => $request->has('status') ? 1 : 0,
         ];
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('uploads/groups/', $filename);
+            $data['image'] = "uploads/groups/$filename";
+        }
 
         $group->update($data);
 

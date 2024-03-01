@@ -11,7 +11,7 @@ class SubGroup extends Model
     use HasFactory;
 
     protected $table = 'sub_groups';
-    protected $fillable = ['group_id', 'sub_group_title', 'status'];
+    protected $fillable = ['group_id', 'sub_group_title', 'status','image'];
 
     public function group()
     {

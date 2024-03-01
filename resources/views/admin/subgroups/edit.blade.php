@@ -32,6 +32,11 @@
                                 <input type="text" name="sub_group_title" value="{{ $subgroup->sub_group_title }}" class="form-control" />
                             </div>
                             <div class="col-md-6 mb-3">
+                                <label for="">Image</label>
+                                <img src="{{asset("$subgroup->image")}}" width="60px" height="60px" />
+                                <input type="file" name="image" class="form-control"  >
+                            </div>
+                            <div class="col-md-6 mb-3">
                                 <label for="">Status</label><br/>
                                 <input type="checkbox" name="status" {{ $subgroup->status == 1 ? 'checked' : '' }} />
                             </div>

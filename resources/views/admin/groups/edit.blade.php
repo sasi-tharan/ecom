@@ -32,6 +32,11 @@
                                 <input type="text" name="group_title" value="{{ $group->group_title }}" class="form-control" />
                             </div>
                             <div class="col-md-6 mb-3">
+                                <label for="">Image</label>
+                                <img src="{{asset("$group->image")}}" width="60px" height="60px" />
+                                <input type="file" name="image" class="form-control"  >
+                            </div>
+                            <div class="col-md-6 mb-3">
                                 <label for="">Status</label><br/>
                                 <input type="checkbox" name="status" {{ $group->status == 1 ? 'checked' : '' }} />
                             </div>

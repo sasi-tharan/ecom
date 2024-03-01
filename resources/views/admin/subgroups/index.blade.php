@@ -23,6 +23,7 @@
                                 <th>ID</th>
                                 <th>Group</th>
                                 <th>Sub Group Title</th>
+                                <th>Image</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -33,6 +34,9 @@
                                     <td>{{ $subgroup->id }}</td>
                                     <td>{{ $subgroup->group->group_title }}</td>
                                     <td>{{ $subgroup->sub_group_title }}</td>
+                                    <td>
+                                        <img src="{{asset("$subgroup->image")}}" style="width:70px; hieght:70px" alt="Slider">
+                                    </td>
                                     <td>{{ $subgroup->status == 1 ? 'Active' : 'Inactive' }}</td>
                                     <td>
                                         <a href="{{ route('admin.subgroups.edit', $subgroup->id) }}"

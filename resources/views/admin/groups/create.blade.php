@@ -29,6 +29,10 @@
                                 <input type="text" name="group_title" class="form-control" />
                             </div>
                             <div class="col-md-6 mb-3">
+                                <label for="">Image</label>
+                                <input type="file" name="image" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
                                 <label for="">Status</label><br/>
                                 <input type="checkbox" name="status"  />
                             </div>

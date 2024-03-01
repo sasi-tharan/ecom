@@ -117,4 +117,16 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('message', 'Product Added Successfully');
     }
 
+    public function edit($id)
+    {
+        // Retrieve the product by ID
+        $product = Product::findOrFail($id);
+
+        $departments = Department::all();
+        $groups = Group::all();
+        $subGroups = SubGroup::all();
+
+        return view('admin.products.edit', compact('product', 'departments', 'groups', 'subGroups'));
+    }
+
 }

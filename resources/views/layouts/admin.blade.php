@@ -23,6 +23,11 @@
     <link rel="shortcut icon" href="{{ asset('admin/css/images/favicon.png') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
 
 
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> --}}
@@ -69,6 +74,9 @@
     <script src="{{ asset('admin/js/data-table.js') }}"></script>
     <script src="  {{ asset('admin/js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset('admin/js/dataTables.bootstrap4.js') }}"></script>
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <!-- End custom js for this page-->
     @yield('scripts')
 

@@ -12,7 +12,7 @@ class Group extends Model
     use HasFactory;
 
     protected $table = 'group';
-    protected $fillable = ['department_id', 'group_title', 'status'];
+    protected $fillable = ['department_id', 'group_title', 'status', 'image']; // Add 'image' to the fillable array
 
     public function department()
     {

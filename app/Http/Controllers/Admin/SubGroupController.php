@@ -37,6 +37,13 @@ class SubGroupController extends Controller
                 'status' => $request->has('status') ? 1 : 0,
             ];
 
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->move('uploads/sub_groups/', $filename);
+                $data['image'] = "uploads/sub_groups/$filename";
+            }
+
             SubGroup::create($data);
 
             return redirect('admin/subgroups')->with('message', 'Sub Group Added Successfully');
@@ -70,6 +77,13 @@ class SubGroupController extends Controller
                 'sub_group_title' => $request->input('sub_group_title'),
                 'status' => $request->has('status') ? 1 : 0,
             ];
+
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $filename = time() . '.' . $file->getClientOriginalExtension();
+                $file->move('uploads/sub_groups/', $filename);
+                $data['image'] = "uploads/sub_groups/$filename";
+            }
 
             $subgroup->update($data);
 

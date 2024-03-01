@@ -23,6 +23,7 @@
                                 <th>ID</th>
                                 <th>Department</th>
                                 <th>Group Title</th>
+                                <th>Image</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -33,6 +34,9 @@
                                     <td>{{ $group->id }}</td>
                                     <td>{{ $group->department->department_title }}</td>
                                     <td>{{ $group->group_title }}</td>
+                                    <td>
+                                        <img src="{{asset("$group->image")}}" style="width:70px; hieght:70px" alt="Slider">
+                                    </td>
                                     <td>{{ $group->status == 1 ? 'Active' : 'Inactive' }}</td>
                                     <td>
                                         <a href="{{ route('admin.groups.edit', $group->id) }}"

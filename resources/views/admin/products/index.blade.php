@@ -37,7 +37,7 @@
                                     <td>{{ $product->description }}</td>
                                     <td>{{ $product->status ? 'Active' : 'Inactive' }}</td>
                                     <td>
-                                        <a href="{{ url('admin/products/' . $product->id . '/edit') }}" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="{{ url('admin/products/' . $product->id . '/edit') }}" class="btn btn-success btn-sm">Edit</a>
                                         <form action="{{ url('admin/products/' . $product->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')

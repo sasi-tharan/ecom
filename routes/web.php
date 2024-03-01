@@ -1,15 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\GroupController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\SubGroupController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
-use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\SubGroupController;
+use App\Http\Controllers\Admin\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +19,7 @@ use App\Http\Controllers\Admin\PermissionController;
 | routes are loaded by the RouteServiceProvider and all of them will
 | be assigned to the "web" middleware group. Make something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return view('auth.login');
@@ -33,7 +32,6 @@ Auth::routes();
 //Admin Route
 Route::prefix('admin')->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index']);
-
 
     Route::controller(RoleController::class)->group(function () {
         Route::get('/roles', 'index')->name('admin.roles.index');
@@ -93,13 +91,12 @@ Route::prefix('admin')->group(function () {
         Route::get('/subgroups/{subgroup}/delete', 'destroy');
     });
 
-    // Admin Product Route
-    Route::controller(ProductController::class)->group(function () {
-        Route::get('products', 'index')->name('admin.products.index'); 
-        Route::get('/products/create', 'create')->name('admin.products.create');
-        Route::post('/products/create', 'store')->name('admin.products.store'); // Change this line to use Route::post
+// Admin Product Route
+    Route::prefix('admin')->group(function () {
+        Route::get('products', [ProductController::class, 'index'])->name('admin.products.index');
+        Route::get('products/create', [ProductController::class, 'create'])->name('admin.products.create');
+        Route::post('products', [ProductController::class, 'store'])->name('admin.products.store');
+        Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
     });
-
-
 
 });

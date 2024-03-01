@@ -27,6 +27,10 @@
                                 <input type="text" name="sub_group_title" id="sub_group_title" class="form-control" required />
                             </div>
                             <div class="col-md-6 mb-3">
+                                <label for="">Image</label>
+                                <input type="file" name="image" class="form-control" />
+                            </div>
+                            <div class="col-md-6 mb-3">
                                 <label for="status">Status</label><br/>
                                 <input type="checkbox" name="status" id="status" />
                             </div>
