@@ -5,9 +5,14 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @if (session('message'))
-                <div class="alert alert-success">{{ session('message') }}</div>
-            @endif
+            @if (session('success'))
+            @section('alertify-script')
+                <script>
+                    alertify.set('notifier', 'position', 'top-right');
+                    alertify.success("{{ session('success') }}");
+                </script>
+            @show
+        @endif
 
             <div class="card">
                 <div class="card-header">

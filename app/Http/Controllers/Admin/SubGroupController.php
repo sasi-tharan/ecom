@@ -46,7 +46,9 @@ class SubGroupController extends Controller
 
             SubGroup::create($data);
 
-            return redirect('admin/subgroups')->with('message', 'Sub Group Added Successfully');
+            session()->flash('success', 'Sub Group Added successfully');
+
+            return redirect('admin/subgroups');
         } catch (ValidationException $e) {
             return redirect()->route('admin.subgroups.create')
                 ->withErrors($e->errors())
@@ -87,7 +89,9 @@ class SubGroupController extends Controller
 
             $subgroup->update($data);
 
-            return redirect('admin/subgroups')->with('message', 'Sub Group Updated Successfully');
+            session()->flash('success', 'Sub Group Updated successfully');
+
+            return redirect('admin/subgroups');
         } catch (ValidationException $e) {
             return redirect()->route('admin.subgroups.edit', $subgroup->id)
                 ->withErrors($e->errors())
@@ -101,10 +105,17 @@ class SubGroupController extends Controller
     {
         if ($subgroup) {
             $subgroup->delete();
-            return redirect('admin/subgroups')->with('message', 'Sub Group Deleted Successfully');
+
+            // Store a success message in the session
+          session()->flash('success', 'Sub Group Deleted Successfully');
+
+          return redirect('admin/subgroups');
         }
 
-        return redirect()->route('admin.subgroups.index')->with('message', 'Sub Group not found or something went wrong');
+        // Store an error message in the session if the group is not found or something goes wrong
+        session()->flash('error', 'SubGroup not found or something went wrong');
+
+        return redirect('admin/subgroups');
     }
 
 

@@ -5,9 +5,14 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @if (session('message'))
-                <div class="alert alert-success">{{ session('message') }}</div>
-            @endif
+            @if (session('success'))
+            @section('alertify-script')
+                <script>
+                    alertify.set('notifier', 'position', 'top-right');
+                    alertify.success("{{ session('success') }}");
+                </script>
+            @show
+        @endif
 
             <div class="card">
                 <div class="card-header">
@@ -37,13 +42,21 @@
                                     <td>{{ $product->description }}</td>
                                     <td>{{ $product->status ? 'Active' : 'Inactive' }}</td>
                                     <td>
-                                        <a href="{{ url('admin/products/' . $product->id . '/edit') }}" class="btn btn-success btn-sm">Edit</a>
+                                        <!-- Edit Icon -->
+                                        <a href="{{ route('admin.products.edit', $product->id) }}" class="text-success" title="Edit">
+                                            <i class="mdi mdi-pencil"></i>
+                                        </a>
+
+                                        <!-- Delete Icon with Confirmation -->
                                         <form action="{{ url('admin/products/' . $product->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this product?')">Delete</button>
+                                            <button type="submit" class="text-danger" title="Delete" onclick="return confirm('Are you sure you want to delete this product?')">
+                                                <i class="mdi mdi-delete"></i>
+                                            </button>
                                         </form>
                                     </td>
+
                                 </tr>
                             @empty
                                 <tr>

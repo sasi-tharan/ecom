@@ -5,9 +5,14 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @if (session('message'))
-                <div class="alert alert-success">{{ session('message') }}</div>
-            @endif
+            @if (session('success'))
+            @section('alertify-script')
+                <script>
+                    alertify.set('notifier', 'position', 'top-right');
+                    alertify.success("{{ session('success') }}");
+                </script>
+            @show
+        @endif
 
             <div class="card">
                 <div class="card-header">
@@ -38,18 +43,20 @@
                                     <td>{{ $role->status }}</td>
                                     <td>
                                         <!-- Edit Icon with Link -->
-                                        <a href="{{ url('admin/roles/' . $role->id . '/edit') }}" class="btn btn-success btn-sm">
+                                        <a href="{{ url('admin/roles/' . $role->id . '/edit') }}" class="text-success" title="Edit">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <!-- Delete Icon with Form -->
-                                        <form action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" style="display: inline;">
+
+                                        <!-- Delete Icon with Link -->
+                                        <a href="{{ route('admin.roles.destroy', $role->id) }}" onclick="event.preventDefault(); document.getElementById('delete-form-{{ $role->id }}').submit();" class="text-danger" title="Delete">
+                                            <i class="fa fa-trash-alt"></i>
+                                        </a>
+
+                                        <!-- Delete Form -->
+                                        <form id="delete-form-{{ $role->id }}" action="{{ route('admin.roles.destroy', $role->id) }}" method="POST" style="display: none;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this role?')">
-                                                <i class="fa fa-trash-alt"></i>
-                                            </button>
                                         </form>
-
                                     </td>
 
                                 </tr>

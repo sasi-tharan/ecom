@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Models\Group;
 use App\Models\Product;
 use App\Models\SubGroup;
-use App\Models\Department;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class ProductController extends Controller
 {
@@ -17,7 +17,7 @@ class ProductController extends Controller
         $products = Product::all();
 
         // Pass the products to the view
-        return view('admin.products.index', ['products' => $products]);
+        return view('admin.products.index', compact('products'));
     }
 
     public function create()
@@ -113,18 +113,18 @@ class ProductController extends Controller
                 ]);
             }
         }
+        // Store a success message in the session
+        session()->flash('success', 'Product created successfully');
 
-        return redirect()->route('admin.products.index')->with('message', 'Product Added Successfully');
+        return redirect('/admin/products');
+
     }
 
-    public function edit($id)
+    public function edit(Product $product)
     {
-        // Retrieve the product by ID
-        $product = Product::findOrFail($id);
-
-        $departments = Department::all();
-        $groups = Group::all();
-        $subGroups = SubGroup::all();
+        $departments = Department::all(); // Assuming you have a Department model
+        $groups = Group::all(); // Assuming you have a Group model
+        $subGroups = SubGroup::all(); // Assuming you have a SubGroup model
 
         return view('admin.products.edit', compact('product', 'departments', 'groups', 'subGroups'));
     }

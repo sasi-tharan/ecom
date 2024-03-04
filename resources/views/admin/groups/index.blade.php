@@ -3,9 +3,14 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @if (session('message'))
-                <div class="alert alert-success">{{ session('message') }}</div>
-            @endif
+            @if (session('success'))
+            @section('alertify-script')
+                <script>
+                    alertify.set('notifier', 'position', 'top-right');
+                    alertify.success("{{ session('success') }}");
+                </script>
+            @show
+        @endif
 
             <div class="card">
                 <div class="card-header">
@@ -39,10 +44,17 @@
                                     </td>
                                     <td>{{ $group->status == 1 ? 'Active' : 'Inactive' }}</td>
                                     <td>
-                                        <a href="{{ route('admin.groups.edit', $group->id) }}"
-                                            class="btn btn-success">Edit</a>
-                                            <a href="{{ url('admin/groups/' . $group->id . '/delete') }}" onclick="return confirm('Are you sure you want to delete this?')" class="btn btn-danger">Delete</a>
+                                        <!-- Edit Icon -->
+                                        <a href="{{ route('admin.groups.edit', $group->id) }}" class="text-success" title="Edit">
+                                            <i class="mdi mdi-pencil"></i>
+                                        </a>
+
+                                        <!-- Delete Icon with Confirmation -->
+                                        <a href="{{ url('admin/groups/' . $group->id . '/delete') }}" onclick="return confirm('Are you sure you want to delete this?')" class="text-danger" title="Delete">
+                                            <i class="mdi mdi-delete"></i>
+                                        </a>
                                     </td>
+
                                 </tr>
                             @endforeach
                         </tbody>

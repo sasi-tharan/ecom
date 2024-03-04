@@ -79,7 +79,7 @@
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <!-- End custom js for this page-->
     @yield('scripts')
-
+    @yield('alertify-script')
 
     @livewireScripts
 

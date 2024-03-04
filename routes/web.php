@@ -51,16 +51,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/users/{user_id}/delete', 'destroy');
     });
 
-    //Admin  Home Slider Route
-    Route::controller(SliderController::class)->group(function () {
-        Route::get('sliders', 'index');
-        Route::get('/sliders/create', 'create');
-        Route::post('/sliders/create', 'store');
-        Route::get('/sliders/{slider}/edit', 'edit');
-        Route::put('/sliders/{slider}', 'update');
-        Route::get('/sliders/{slider}/delete', 'destroy');
-    });
-
     //Admin Department Route
     Route::controller(DepartmentController::class)->group(function () {
         Route::get('departments', 'index');
@@ -91,12 +81,12 @@ Route::prefix('admin')->group(function () {
         Route::get('/subgroups/{subgroup}/delete', 'destroy');
     });
 
-// Admin Product Route
-    Route::prefix('admin')->group(function () {
-        Route::get('products', [ProductController::class, 'index'])->name('admin.products.index');
-        Route::get('products/create', [ProductController::class, 'create'])->name('admin.products.create');
-        Route::post('products', [ProductController::class, 'store'])->name('admin.products.store');
-        Route::get('products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+    // Admin Group Route
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('/products', 'index')->name('admin.products.index'); // Define the index route
+        Route::get('/products/create', 'create')->name('admin.products.create');
+        Route::post('/products/create', 'store')->name('admin.products.store');
+        Route::get('/products/{product}/edit', 'edit')->name('admin.products.edit');
     });
 
 });

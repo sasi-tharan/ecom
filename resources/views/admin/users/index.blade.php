@@ -5,9 +5,15 @@
 @section('content')
     <div class="row">
         <div class="col-md-12">
-            @if (session('message'))
-                <div class="alert alert-success">{{ session('message') }}</div>
-            @endif
+            @if (session('success'))
+            @section('alertify-script')
+                <script>
+                    alertify.set('notifier', 'position', 'top-right');
+                    alertify.success("{{ session('success') }}");
+                </script>
+            @show
+        @endif
+
 
             <div class="card">
 
@@ -48,11 +54,12 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ url('admin/users/' . $user->id . '/edit') }}"
-                                            class="btn btn-success btn-sm">Edit</a>
-                                        <a href="{{ url('admin/users/' . $user->id . '/delete') }}"
-                                            onclick="return confirm('Are you sure, you want to delete this data?')"
-                                            class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="{{ url('admin/users/' . $user->id . '/edit') }}" class="text-success" title="Edit">
+                                            <i class="mdi mdi-pencil"></i>
+                                        </a>
+                                        <a href="{{ url('admin/users/' . $user->id . '/delete') }}" onclick="return confirm('Are you sure you want to delete this data?')" class="text-danger" title="Delete">
+                                            <i class="mdi mdi-delete"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             @empty

@@ -43,7 +43,12 @@ class DepartmentController extends Controller
 
         Department::create($data);
 
-        return redirect('admin/departments')->with('message', 'Department Added Successfully');
+          // Store a success message in the session
+          session()->flash('success', 'Department created successfully');
+
+          return redirect('/admin/departments');
+
+
     }
 
     public function edit(Department $department)
@@ -74,12 +79,18 @@ class DepartmentController extends Controller
 
         $department->update($data);
 
-        return redirect('admin/departments')->with('message', 'Department Updated Successfully');
+         // Store a success message in the session
+         session()->flash('success', 'Department Updated successfully');
+
+         return redirect('/admin/departments');
     }
 
     public function destroy(Department $department)
     {
         optional($department, function ($department) {
+            // Delete related groups
+            $department->groups()->delete();
+
             $destination = $department->image;
 
             if (File::exists($destination)) {
@@ -89,7 +100,8 @@ class DepartmentController extends Controller
             $department->delete();
         });
 
-        return back()->with('message', 'Department Deleted Successfully');
+        // Store a success message in the session
+        return back()->with('success', 'Department Deleted Successfully');
     }
 
 

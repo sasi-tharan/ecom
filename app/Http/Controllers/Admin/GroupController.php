@@ -43,7 +43,10 @@ class GroupController extends Controller
 
         Group::create($data);
 
-        return redirect('admin/groups')->with('message', 'Group Added Successfully');
+        // Store a success message in the session
+        session()->flash('success', 'Group created successfully');
+
+        return redirect('/admin/groups');
     }
 
     public function edit(Group $group)
@@ -71,18 +74,29 @@ class GroupController extends Controller
         }
 
         $group->update($data);
+        session()->flash('success', 'Group Updated successfully');
 
-        return redirect('admin/groups')->with('message', 'Group Updated Successfully');
+        return redirect('admin/groups');
     }
 
     public function destroy(Group $group)
     {
         if ($group) {
+            // Delete related sub groups
+            $group->subGroups()->delete();
+
             $group->delete();
-            return redirect()->route('admin.groups.index')->with('message', 'Group Deleted Successfully');
+
+            // Store a success message in the session
+            session()->flash('success', 'Group Deleted Successfully');
+
+            return redirect('admin/groups');
         }
 
-        return redirect()->route('admin.groups.index')->with('message', 'Group not found or something went wrong');
+        // Store an error message in the session if the group is not found or something goes wrong
+        session()->flash('error', 'Group not found or something went wrong');
+
+        return redirect('admin/groups');
     }
 
 

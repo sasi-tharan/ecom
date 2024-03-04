@@ -37,7 +37,10 @@ class UserController extends Controller
             'user_type' => $request->user_type,
         ]);
 
-        return redirect('/admin/users')->with('message', 'User created successfully');
+        // Store a success message in the session
+        session()->flash('success', 'User created successfully');
+
+        return redirect('/admin/users');
     }
 
 
