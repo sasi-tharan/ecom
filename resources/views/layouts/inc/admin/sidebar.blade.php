@@ -81,5 +81,12 @@
                 <span class="menu-title">Home Slider</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.banners.index') }}">
+                <i class="mdi mdi-image menu-icon"></i>
+                <span class="menu-title">Banner</span>
+            </a>
+        </li>
+
     </ul>
 </nav>

@@ -50,9 +50,43 @@
                 </div>
             </div>
         </div>
+        <footer>
+            Designed & Developed by Wei-Solutions
+        </footer>
+
 
     </div>
 
+
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container-scroller {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-panel {
+            flex: 1;
+        }
+
+        .content-wrapper {
+            flex: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f9fa; /* Optional background color */
+            margin-top: auto; /* Push the footer to the bottom */
+        }
+    </style>
 
 
     <!-- plugins:js -->

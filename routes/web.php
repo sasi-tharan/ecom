@@ -1,14 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\SliderController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\SubGroupController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DepartmentController;
-use App\Http\Controllers\Admin\GroupController;
-use App\Http\Controllers\Admin\ProductController;
-use App\Http\Controllers\Admin\RoleController;
-use App\Http\Controllers\Admin\SliderController;
-use App\Http\Controllers\Admin\SubGroupController;
-use App\Http\Controllers\Admin\UserController;
-use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,6 +91,14 @@ Route::prefix('admin')->group(function () {
         Route::get('/sliders/{slider}/delete', 'destroy')->name('admin.sliders.destroy');
     });
 
+    Route::controller(BannerController::class)->group(function () {
+        Route::get('banners', 'index')->name('admin.banners.index');
+        Route::get('/banners/create', 'create')->name('admin.banners.create');
+        Route::post('/banners/create', 'store')->name('admin.banners.store');
+        Route::get('/banners/{banner}/edit', 'edit')->name('admin.banners.edit');
+        Route::put('/banners/{banner}', 'update')->name('admin.banners.update');
+        Route::get('/banners/{banner}/delete', 'destroy')->name('admin.banners.destroy');
+    });
 
     // Admin Group Route
     Route::controller(ProductController::class)->group(function () {
