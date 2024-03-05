@@ -75,5 +75,11 @@
                 <span class="menu-title">Products</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.sliders.index') }}">
+                <i class="mdi mdi-view-carousel menu-icon"></i>
+                <span class="menu-title">Home Slider</span>
+            </a>
+        </li>
     </ul>
 </nav>

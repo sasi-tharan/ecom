@@ -81,6 +81,16 @@ Route::prefix('admin')->group(function () {
         Route::get('/subgroups/{subgroup}/delete', 'destroy');
     });
 
+    Route::controller(App\Http\Controllers\Admin\SliderController::class)->group(function () {
+        Route::get('sliders', 'index')->name('admin.sliders.index');
+        Route::get('/sliders/create', 'create')->name('admin.sliders.create');
+        Route::post('/sliders/create', 'store')->name('admin.sliders.store');
+        Route::get('/sliders/{slider}/edit', 'edit')->name('admin.sliders.edit');
+        Route::put('/sliders/{slider}', 'update')->name('admin.sliders.update');
+        Route::get('/sliders/{slider}/delete', 'destroy')->name('admin.sliders.destroy');
+    });
+
+
     // Admin Group Route
     Route::controller(ProductController::class)->group(function () {
         Route::get('/products', 'index')->name('admin.products.index'); // Define the index route
@@ -88,5 +98,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/products/create', 'store')->name('admin.products.store');
         Route::get('/products/{product}/edit', 'edit')->name('admin.products.edit');
     });
+
+
 
 });

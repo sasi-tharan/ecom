@@ -47,8 +47,12 @@ class RoleController extends Controller
             return response()->json(['role' => $role, 'message' => 'Role created successfully'], 201);
         }
 
-        return redirect()->route('admin.roles.index')->with('message', 'Role created successfully');
+        // Store a success message in the session
+        session()->flash('success', 'Role created successfully');
+
+        return redirect()->route('admin.roles.index');
     }
+
 
     public function edit(Request $request, $roleId)
     {
@@ -81,8 +85,12 @@ class RoleController extends Controller
             return response()->json(['role' => $role, 'message' => 'Role updated successfully'], 200);
         }
 
-        return redirect()->route('admin.roles.index')->with('message', 'Role updated successfully');
+        // Store a success message in the session
+        session()->flash('success', 'Role updated successfully');
+
+        return redirect()->route('admin.roles.index');
     }
+
 
     private function validateRole(Request $request)
     {
@@ -102,6 +110,10 @@ class RoleController extends Controller
             return response()->json(['message' => 'Role deleted successfully'], 200);
         }
 
-        return redirect()->route('admin.roles.index')->with('message', 'Role deleted successfully');
+        // Store a success message in the session
+        session()->flash('success', 'Role deleted successfully');
+
+        return redirect()->route('admin.roles.index');
     }
+
 }
